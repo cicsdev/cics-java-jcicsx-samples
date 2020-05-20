@@ -2,6 +2,15 @@
 
 This repository contains samples to show different scenarios of how you might use the JCICSX API. 
 These will not work out of the box, as you will require valid CICS resources eg CICS Programs for them to use. 
+Each sample is contained within a web application so that you could package each one individually as a WAR and deploy to CICS to get it running. If you're just interested in the Java code, this can be found in *src/main/java/sample/SampleServlet*. To run this locally on your own machine, refer to the documentation here: 
+//Add link to KC
+
+# Prerequisites
+
+//To add....
+//Also link to cics-bundle-maven to say what to add to pom.xml to deploy to CICS if using Maven
+
+
 
 ## append-char-container-sample
 
