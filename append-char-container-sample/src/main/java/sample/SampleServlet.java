@@ -13,7 +13,7 @@ import com.ibm.cics.jcicsx.CICSConditionException;
 import com.ibm.cics.jcicsx.CICSContext;
 
 /**
- * Servlet implementation class SimpleServlet
+ * A sample servlet to demonstrate how to use JCICSX to create CHAR containers and append data to them
  */
 @WebServlet("/SampleServlet")
 public class SampleServlet extends HttpServlet {
@@ -54,10 +54,10 @@ public class SampleServlet extends HttpServlet {
 			response.getWriter().println(combinedString);
 			
 		} catch (CICSConditionException e) {
-			System.out.println("An exception has occured with" + 
-					" RESP: " + e.getResp2() + 
-					" RESP2: " + e.getResp2() + 
-					" Message: " + e.getMessage());
+			response.getWriter().println("An exception has occured" + 
+					"\nRESP: " + e.getResp2() + 
+					"\nRESP2: " + e.getResp2() + 
+					"\nMessage: " + e.getMessage());
 		}
     }
 
