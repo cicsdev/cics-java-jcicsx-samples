@@ -23,3 +23,7 @@ This sample walks through how to use the JCICSX API to perform a LINK to a CICS 
 ## char-link-program-sample
 
 This sample is similar to the above, but shows the data being returned in a CHAR container, and therefore recieves a string as the output of the linked CICS Program. 
+
+## mockito-testing-containers-sample
+
+This sample shows how to get data from BIT containers, and how to test the core logic of your application by using Mockito to mock the JCICSX calls. 
