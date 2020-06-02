@@ -1,11 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  
+
   <groupId>com.ibm.cics</groupId>
   <artifactId>char-link-program-sample</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  
+
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -19,6 +22,8 @@
       <version>1.0</version>
       <scope>provided</scope>
     </dependency>
+
+    <!-- JCICSX dependency, used in SampleServlet.java -->
     <dependency>
       <!-- <groupId>com.ibm.cics</groupId>
       <artifactId>com.ibm.cics.jcicsx</artifactId> -->
@@ -29,27 +34,55 @@
   </dependencies>
 
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.2</version>
-          <configuration>
-            <failOnMissingWebXml>false</failOnMissingWebXml>
-          </configuration>
-        </plugin>
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
       </plugin>
+
+      <!-- The below bundles the application as a WAR in a CICS bundle and deploys this to CICS using the CICS bundle deployment API.
+           This is optional and can be removed if you don't wish to deploy the application this way -->
+      <plugin>
+        <groupId>com.ibm.cics</groupId>
+        <artifactId>cics-bundle-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <executions>
+          <execution>
+
+            <!-- These goals will firstly run the war packaging on the project, and then will run the deploy goal, which will happen during the verify phase of the lifecycle by default-->
+            <goals>
+              <goal>bundle-war</goal>
+              <goal>deploy</goal>
+            </goals>
+
+            <configuration>
+              <!-- The bundle classifier indicates that the war should be packaged into a CICS bundle -->
+              <classifier>cics-bundle</classifier>
+
+              <!-- Update the default JVM server that the application will be installed into by default, This is used when creating the bundle, and goes into the CICS bundle's manifest -->
+              <jvmserver>DFHWLP</jvmserver>
+              
+              <!-- Set the URL of the deploy target -->
+              <url>http://yourcicsurl.com:9080</url>
+
+              <!-- We'd recommend that you use Maven's password encryption, or supply your credentials using environment variables or properties, as shown here. -->
+              <username>${cics-user-id}</username>
+              <password>${cics-password}</password>
+
+              <!-- Identify which bundle definition you're going to use from the CSD and which region and CICSPlex you want to deploy to -->
+              <bunddef>DEMOBUNDLE</bunddef>
+              <csdgroup>BAR</csdgroup>
+              <cicsplex>CICSEX56</cicsplex>
+              <region>IYCWEMW2</region>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
-  </pluginManagement>
   </build>
-      
-      
 </project>

@@ -1,7 +1,6 @@
 package sample;
 
 import java.io.IOException;
-import java.text.MessageFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,12 +22,12 @@ public class SampleServlet extends HttpServlet {
     /**
      * Name of the program to invoke.
      */
-    private static final String PROG_NAME = "PROG";
+    private static final String PROG_NAME = "EDUCHAN";
     
     /**
      * Name of the channel to use.
      */
-    private static final String CHANNEL = "CHAN";
+    private static final String CHANNEL = "MYCHANNEL";
     
     /**
      * Name of the container used to send data to the target program.
@@ -38,7 +37,7 @@ public class SampleServlet extends HttpServlet {
     /**
      * Name of the container which will contain the response from the target program.
      */
-    private static final String OUTPUT_CONTAINER = "OUTPUTCONT";
+    private static final String OUTPUT_CONTAINER = "OUTPUTDATA";
 
     /**
      * Data to place in the container to be sent to the target program.
@@ -52,7 +51,7 @@ public class SampleServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		
-		response.getWriter().print("Hello world!");
+		response.getWriter().print("Hello world! ");
 		
         // Message to emit as the response
         String resultStr = null;
@@ -64,13 +63,17 @@ public class SampleServlet extends HttpServlet {
 			// Create a reference to the Program we will invoke and specify the channel
 	        // Don't syncpoint between remote links, this is the default
 			// Link to the program with an input container, containing the input string of "Hello from Java"
-			// Get the output from the Program as a string
-			
-			resultStr = task.createProgramLinkerWithChannel(PROG_NAME, CHANNEL)
+			task.createProgramLinkerWithChannel(PROG_NAME, CHANNEL)
 				.setSyncOnReturn(false)
 				.setStringInput(INPUT_CONTAINER, INPUTSTRING)
-				.link()
-				.getStringOutput(OUTPUT_CONTAINER);
+				.link();
+			
+			
+			// Get the data from the output container as a string
+			// You could remove task.getChannel(CHANNEL) and do this as one chained command above, but this demonstrates how you could call this part later on in your program
+			resultStr = task.getChannel(CHANNEL)
+				.getCHARContainer(OUTPUT_CONTAINER)
+				.get();
 
 			if (resultStr == null) {
 				// Missing response container
@@ -78,13 +81,12 @@ public class SampleServlet extends HttpServlet {
 			}
 			
 			// Format the final message and print it
-			String msg = MessageFormat.format("Returned from link to {0} with a text response of \'{1}\'",
-					PROG_NAME, resultStr);
+			String msg = "Returned from link to \'" + PROG_NAME + "\' with a text response of \'" + resultStr + "\'";
 			response.getWriter().println(msg);
 			
 		} catch (CICSConditionException e) {
 			response.getWriter().println("An exception has occured" + 
-					"\nRESP: " + e.getResp2() + 
+					"\nRESP: " + e.getRespCode() + 
 					"\nRESP2: " + e.getResp2() + 
 					"\nMessage: " + e.getMessage());
 		}
