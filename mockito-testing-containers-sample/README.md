@@ -1,4 +1,4 @@
-Mockito testing containers Sample
+# Mockito testing containers Sample
 
 This sample shows how you can use the JCICSX API to get data from BIT containers. 
 This sample contains a `CurrencyConverter` class which gets an account balance, and a conversion rate from 2 separate channels, and returns a string representing the value of the account once converted using the rate. 
