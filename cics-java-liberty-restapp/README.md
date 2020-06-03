@@ -8,7 +8,7 @@ Sample RESTful web application for deployment to a Liberty JVM server in CICS. T
 1. `InfoResource` - This queries the JVM server environment using system properties and uses JAXB beans to return a JSON response detailing the CICS environment.
 1. `ReverseResource` - This is similar to `InfoResource`, but uses the JCICSX API to link to the COBOL program `EDUCHAN` using channels and containers. An input string is passed to `EDUCHAN`, which is then reversed and returned, along with the time from CICS. 
 
-The following Java source components are supplied in the [`src/Java`](src/Java) directory in this repository.
+The following Java source components are supplied in the [`src/main/java`](src/main/java) directory in this repository.
 
 ## Java package com.ibm.cicsdev.restapp
 * [`CICSApplication`](src/main/java/com/ibm/cicsdev/restapp/CICSApplication.java) - Sets the `ApplicationPath` for resources in this application
@@ -59,21 +59,21 @@ You can then view the web server `http://yourcicsurl.com:9080/cics-java-liberty-
 
 #### Using a web browser you can issue the following HTTP GET requests
 
-* http://yourcicsurl.com:9080/cics-java-liberty-restapp-0.0.1-SNAPSHOT/cicsinfo
+* http://host:port/cics-java-liberty-restapp-0.0.1-SNAPSHOT/cicsinfo
 
 This will invoke the `InfoResource` class and return the following JSON response with information about the target CICS system:
 
 `{"applid":"IYK2Z32E","jvmServer":"DFHWLP","time":"2016-09-09T16:19:55.384Z","cicsEnvironment":{"cicsProduct":"CICS Transaction Server for z/OS","cicsVersion":"5.3.0"}}`
 
 
-* http://yourcicsurl.com:9080/cics-java-liberty-restapp-0.0.1-SNAPSHOT/
+* http://host:port/cics-java-liberty-restapp-0.0.1-SNAPSHOT/
 
 This will invoke the `ReverseResource` class which links to the CICS COBOL program and reverses the default string "Hello from Java" returning the following JSON response:
 
 `{"time":"2016-09-09T16:15:52.756Z","original":"Hello from Java","reverse":"avaJ morf olleH","truncated":false}`
 
 
-* http://yourcicsurl.com:9080/cics-java-liberty-restapp-0.0.1-SNAPSHOT/ilovecics
+* http://host:port/cics-java-liberty-restapp-0.0.1-SNAPSHOT/ilovecics
 
 This will invoke the `ReverseResource` class which links to the CICS COBOL program reversing the input string "ilovecics" as follows:
 
