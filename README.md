@@ -17,7 +17,7 @@ This sample shows how you can create a channel. It then creates a container in t
   
 ## bit-link-program-sample
 
-This sample walks through how to use the JCICSX API to perform a LINK to a CICS Program. During the LINK, it passes through a CHAR container, and then receives BIT data as the output from the CICS Program. 
+This sample walks through how to use the JCICSX API to perform a LINK to a CICS Program. During the LINK, it passes through a BIT container containing a temperature in Celcius, and then receives BIT data as the output from the CICS Program containing the temperature converted to Fahrenheit. 
   
 ## char-link-program-sample
 
