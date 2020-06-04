@@ -1,34 +1,37 @@
 package sample;
 
-import java.io.IOException;
-import java.text.MessageFormat;
+import java.nio.ByteBuffer;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.ibm.cics.jcicsx.CICSConditionException;
 import com.ibm.cics.jcicsx.CICSContext;
 
 /**
- * A sample servlet to demonstrate how to use JCICSX to LINK to a CICS Program, passing through CHAR data and receiving BIT data
+ * A sample servlet to demonstrate how to use JCICSX to LINK to a CICS Program with BIT data
  */
-@WebServlet("/SampleServlet")
-public class SampleServlet extends HttpServlet {
+@Path("/")
+@Produces(MediaType.APPLICATION_JSON)
+public class SampleServlet {
 	
-    private static final long serialVersionUID = 1L;
-    
     /**
      * Name of the program to invoke.
      */
-    private static final String PROG_NAME = "PROG";
+    private static final String PROG_NAME = "CONVERT";
     
     /**
      * Name of the channel to use.
      */
-    private static final String CHANNEL = "CHAN";
+    private static final String CHANNEL = "MYCHANNEL";
     
     /**
      * Name of the container used to send data to the target program.
@@ -38,59 +41,74 @@ public class SampleServlet extends HttpServlet {
     /**
      * Name of the container which will contain the response from the target program.
      */
-    private static final String OUTPUT_CONTAINER = "OUTPUTCONT";
-
-    /**
-     * Data to place in the container to be sent to the target program.
-     */
-    private static final String INPUTSTRING = "Hello from Java";
+    private static final String OUTPUT_CONTAINER = "OUTPUTDATA";
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html");
-		
-		response.getWriter().print("Hello world!");
+    @GET
+    @Path("/{text}")
+    public String convertCelciusToFahrenheit(@PathParam("text") String temperatureString) {
+    	
+    	Integer temperature = null;
+    	
+    	try {
+    		temperature = Integer.valueOf(temperatureString);
+		} catch (NumberFormatException e) {
+			Response.serverError().entity("Input is not a valid number").build();
+		}
 		
         // Message to emit as the response
-        byte[] resultStr = null;
+        String convertedTemperature = null;
 
         // Gets the current CICS Context for the environment we're running in
         CICSContext task = CICSContext.getCICSContext();
         
+        // Allocate a byte buffer of 4 bytes for our integer
+        ByteBuffer bytebuffer = ByteBuffer.allocate(4);
+
+        //Data to place in the container to be sent to the target program.
+        byte[] inputData = bytebuffer.putInt(temperature).array();
+        bytebuffer.rewind();
+        
+        
 		try {
 			// Create a reference to the Program we will invoke and specify the channel
 	        // Don't syncpoint between remote links, this is the default
-			// Link to the program with an input container, containing the input string of "Hello from Java"
-			// Get the output from the Program as a byte array
-			
-			resultStr = task.createProgramLinkerWithChannel(PROG_NAME, CHANNEL)
+			// Link to the program with an input container, containing the input data
+			task.createProgramLinkerWithChannel(PROG_NAME, CHANNEL)
 				.setSyncOnReturn(false)
-				.setStringInput(INPUT_CONTAINER, INPUTSTRING)
-				.link()
-				.getBytesOutput(OUTPUT_CONTAINER);
+				.setBytesInput(INPUT_CONTAINER, inputData)
+				.link();
 			
-			String msg;
-			if (resultStr != null) {
-				// Format the final message
-				msg = MessageFormat.format("Returned from link to {0} with response data {1}",
-						PROG_NAME, resultStr);
-			}
-			else {
+			// Get the data from the output container as a byte array
+			// You could remove task.getChannel(CHANNEL) and do this as one chained command above, but this demonstrates how you could call this part later on in your program
+			byte[] returnedData = task.getChannel(CHANNEL)
+				.getBITContainer(OUTPUT_CONTAINER)
+				.get();
+			
+			bytebuffer.put(returnedData);
+			bytebuffer.rewind();
+			convertedTemperature = String.valueOf(bytebuffer.getInt());
+			
+			if (convertedTemperature == null) {
 				// Missing response container
-				msg = MessageFormat.format("Returned from link to {0} with no data", PROG_NAME);
+				convertedTemperature = "<missing>";
 			}
 			
-			// Print the final message
-			response.getWriter().println(msg);
+			// Format the final message and print it
+			return "Returned from link to \'" + PROG_NAME + "\'. " + temperature + " degrees celcius = " + convertedTemperature + " degrees fahrenheit";
 			
 		} catch (CICSConditionException e) {
-			response.getWriter().println("An exception has occured" + 
-					"\nRESP: " + e.getResp2() + 
+			String msg = "An exception has occured" + 
+					"\nRESP: " + e.getRespCode() + 
 					"\nRESP2: " + e.getResp2() + 
-					"\nMessage: " + e.getMessage());
+					"\nMessage: " + e.getMessage();
+			
+			Response r = Response.serverError().entity(msg).build();
+			
+			// Pass the error back up the handler chain
+			throw new WebApplicationException(e, r);
 		}
     }
 

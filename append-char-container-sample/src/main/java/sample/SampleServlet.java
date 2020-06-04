@@ -46,7 +46,7 @@ public class SampleServlet extends HttpServlet {
 			// Get the current task number that this unit of work is running under
 			Integer taskNumber = task.getTaskNumber();
 			
-			// Add the task number to the enf of the CHAR container
+			// Add the task number to the end of the CHAR container
 			charContainer = charContainer.append(taskNumber.toString());
 			
 			// Get the full contents of the container, and print this
