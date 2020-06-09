@@ -30,3 +30,8 @@ This sample mimics the existing JCICS [cics-java-liberty-restapp sample](https:/
 ## mockito-testing-containers-sample
 
 This sample shows how to get data from BIT containers, and how to test the core logic of your application by using Mockito to mock the JCICSX calls. 
+
+
+## Licence
+
+This project is licensed under the Eclipse Public License, Version 2.0.
