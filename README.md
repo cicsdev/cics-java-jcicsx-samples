@@ -1,11 +1,11 @@
 # JCICSX-Samples
 
 This repository contains samples to show different scenarios of how you might use the JCICSX API. 
-These will not work out of the box, as you will require valid CICS resources eg CICS Programs for them to use. 
-Each sample is contained within a web application which can be packaged as a WAR in a CICS bundle and deployed to CICS using the [cics-bundle-maven-plugin](https://github.com/IBM/cics-bundle-maven). If you're just interested in the Java code, this can be found in *src/main/java*. To run this locally on your own machine, refer to the documentation here: 
-//Add link to KC
+These will not work out of the box, as you will require valid CICS resources eg CICS Programs and Libraries for them to use. 
+Each sample is contained within a web application which can be packaged as a WAR in a CICS bundle and deployed to CICS using the [cics-bundle-maven-plugin](https://github.com/IBM/cics-bundle-maven) or the [CICS bundle Gradle plugin](https://github.com/IBM/cics-bundle-gradle). If you're just interested in the Java code, this can be found in *src/main/java*. 
 
-## Pre-reqs
+
+## Prerequisites
 
 * CICS TS V5.6 or later
 * Java SE 1.7 or later on the z/OS system
