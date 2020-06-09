@@ -17,7 +17,7 @@ Download and compile the supplied COBOL program CONVERT and deploy into CICS.
 
 ## Setup
 
-This sample is a Maven project, which uses the [CICS Bundle Maven plugin](https://github.com/IBM/cics-bundle-maven) to package the web application in a CICS bundle and deploy this to CICS. This requires the CICS bundle deployment API to be enabled in CICS as a [prerequisite](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.6.0/configuring/cmci/config-bundle-api.html). Alternatively, if you aren't using Maven, you could take the source from this project and use one of the other methods of deploying the application to CICS such as creating a CICS bundle project in CICS Explorer and adding the source as a dynamic web project include. 
+This sample is a Maven project, which uses the [CICS Bundle Maven plugin](https://github.com/IBM/cics-bundle-maven) to package the web application in a CICS bundle and deploy this to CICS. This requires the CICS bundle deployment API to be enabled in CICS as a [prerequisite](https://www.ibm.com/support/knowledgecenter/en/SSGMCP_5.6.0/configuring/cmci/config-bundle-api.html). Alternatively, if you aren't using Maven, you could use [Gradle](https://github.com/IBM/cics-bundle-gradle) or you could take the source from this project and use one of the other methods of deploying the application to CICS such as creating a CICS bundle project in CICS Explorer and adding the source as a dynamic web project include. 
 
 To run the sample as-is, fill out values in the configuration block in pom.xml
    ```xml
