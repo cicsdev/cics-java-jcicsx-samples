@@ -1,5 +1,15 @@
 package sample;
 
+/* Licensed Materials - Property of IBM                                   */
+/*                                                                        */
+/* SAMPLE                                                                 */
+/*                                                                        */
+/* (c) Copyright IBM Corp. 2020 All Rights Reserved                       */
+/*                                                                        */
+/* US Government Users Restricted Rights - Use, duplication or disclosure */
+/* restricted by GSA ADP Schedule Contract with IBM Corp                  */
+/*                                                                        */
+
 import java.nio.ByteBuffer;
 
 import javax.servlet.http.HttpServlet;
