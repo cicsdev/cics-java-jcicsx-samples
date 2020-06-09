@@ -17,6 +17,10 @@ import com.ibm.cics.jcicsx.CICSContext;
 
 public class CurrencyConverter {
 	
+	public static final String USD2GBP_CONTAINER = "USD-GBP";
+	public static final String RATES_CHANNEL = "RATES";
+	public static final String ACCOUNT_CHANNEL = "ACCOUNTS";
+	
 	private CICSContext task;
 
 	public CurrencyConverter(CICSContext task) {
@@ -24,6 +28,9 @@ public class CurrencyConverter {
 	}
 	
 	public String convertCurrency(String accountName) throws CICSConditionException, InvalidConversionRateException {
+		if (accountName == null || accountName.length() == 0) {
+			throw new IllegalArgumentException("Account name must be provided");
+		}
 		double balance = getAccountBalance(accountName);
 		double rate = getUSDGBPConversionRate();
 		double convertedBalance = balance * rate;
@@ -31,12 +38,12 @@ public class CurrencyConverter {
 	}
 	
 	private double getAccountBalance(String accountName) throws CICSConditionException {
-		byte[] bytes = task.getChannel("ACCOUNTS").getBITContainer(accountName).get();
+		byte[] bytes = task.getChannel(ACCOUNT_CHANNEL).getBITContainer(accountName).get();
 		return ByteBuffer.wrap(bytes).getDouble();
 	}
-	
+
 	private double getUSDGBPConversionRate() throws CICSConditionException, InvalidConversionRateException {
-		byte[] bytes = task.getChannel("RATES").getBITContainer("USD-GBP").get();
+		byte[] bytes = task.getChannel(RATES_CHANNEL).getBITContainer(USD2GBP_CONTAINER).get();
 		
 		double rate = ByteBuffer.wrap(bytes).getDouble();			
 		

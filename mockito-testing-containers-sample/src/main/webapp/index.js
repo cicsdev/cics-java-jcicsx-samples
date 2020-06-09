@@ -1,8 +1,8 @@
 // index.js
 
 // request message on server
-//Calls SampleServlet to get the message
-xhrGet("SampleServlet", function(responseText){
+//Calls CurrencyServlet to get the message
+xhrGet("CurrencyServlet", function(responseText){
 	// add to document
 	var mytitle = document.getElementById('message');
 	mytitle.innerHTML = responseText;
