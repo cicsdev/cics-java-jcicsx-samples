@@ -20,16 +20,19 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <!-- <groupId>com.ibm.cics</groupId>
-      <artifactId>com.ibm.cics.jcicsx</artifactId> -->
-      <groupId>com.ibm.cics.exec-cics-http</groupId>
-      <artifactId>jcicsx-http-client</artifactId>
-      <version>0.0.8-SNAPSHOT</version>
+    <!--
+      <groupId>com.ibm.cics</groupId> 
+      <artifactId>com.ibm.cics.jcicsx</artifactId> 
+     -->
+      <groupId>com.ibm.cics.antz.Integrated</groupId>
+      <artifactId>com.ibm.cics.jcicsx</artifactId>
+      <version>730-SNAPSHOT</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.13</version>
       <scope>test</scope>
     </dependency>
     <dependency>
