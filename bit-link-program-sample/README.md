@@ -10,7 +10,7 @@ Download and compile the supplied COBOL program CONVERT and deploy into CICS.
 
 ## Pre-reqs
 
-* CICS TS V5.1 or later, due to the usage of the `getString()` methods.
+* CICS TS V5.6 or later
 * Java SE 1.7 or later on the z/OS system
 * Java SE 1.7 or later on the workstation
 
