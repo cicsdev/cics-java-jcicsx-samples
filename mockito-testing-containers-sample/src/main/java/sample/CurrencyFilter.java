@@ -19,7 +19,7 @@ import com.ibm.cics.jcicsx.Channel;
 /*
  * This servlet filter runs before the main servlet and sets up some sample data - an account balance and a conversion rate.
  */
-@WebFilter("/*")
+@WebFilter("/CurrencyServlet")
 public class CurrencyFilter implements Filter {
 
 	@Override
