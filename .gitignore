@@ -9,6 +9,7 @@ buildNumber.properties
 .mvn/timing.properties
 
 .apt_generated
+.apt_generated_tests
 .factorypath
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
