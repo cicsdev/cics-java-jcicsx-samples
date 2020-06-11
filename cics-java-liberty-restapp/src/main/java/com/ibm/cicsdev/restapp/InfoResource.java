@@ -22,42 +22,43 @@ import com.ibm.cicsdev.restapp.bean.CICSEnvironment;
 import com.ibm.cicsdev.restapp.bean.CICSInformation;
 
 @Path("cicsinfo")
-@Produces( MediaType.APPLICATION_JSON )
+@Produces(MediaType.APPLICATION_JSON)
 public class InfoResource {
 
-    /**
-     * Formatting string used to produce an ISO-8601 standard timestamp.
-     */
-    private static final String ISO8601_FORMAT = "%tFT%<tT.%<tLZ";
-    
-    /**
-     * RESTful web application that returns information about the CICS environment. 
-     */
-    @GET
-    public CICSInformation getCICSInformation() {
-        
-        // Establish the CICS environment bean
-        CICSEnvironment env = new CICSEnvironment();
+	/**
+	 * Formatting string used to produce an ISO-8601 standard timestamp.
+	 */
+	private static final String ISO8601_FORMAT = "%tFT%<tT.%<tLZ";
 
-        // Initialise with system property values
-        env.setProd(System.getProperty("com.ibm.cics.jvmserver.cics.product.name", "Not available prior to V5.3"));
-        env.setCicsVer(System.getProperty("com.ibm.cics.jvmserver.cics.product.version", "Not available prior to V5.3"));
+	/**
+	 * RESTful web application that returns information about the CICS environment.
+	 */
+	@GET
+	public CICSInformation getCICSInformation() {
 
-        // Establish the CICS information bean
-        CICSInformation info = new CICSInformation();
+		// Establish the CICS environment bean
+		CICSEnvironment env = new CICSEnvironment();
 
-        // Initialise with system property values
-        info.setApplid(System.getProperty("com.ibm.cics.jvmserver.applid"));
-        info.setJvmServer(System.getProperty("com.ibm.cics.jvmserver.name"));
+		// Initialise with system property values
+		env.setProd(System.getProperty("com.ibm.cics.jvmserver.cics.product.name", "Not available prior to V5.3"));
+		env.setCicsVer(
+				System.getProperty("com.ibm.cics.jvmserver.cics.product.version", "Not available prior to V5.3"));
 
-        // Format the current time to ISO 8601 standards
-        Calendar nowUTC = Calendar.getInstance(TimeZone.getTimeZone("Z"));
-        info.setTime(String.format(ISO8601_FORMAT, nowUTC));
+		// Establish the CICS information bean
+		CICSInformation info = new CICSInformation();
 
-        // Add the environment information
-        info.setEnv(env);
+		// Initialise with system property values
+		info.setApplid(System.getProperty("com.ibm.cics.jvmserver.applid"));
+		info.setJvmServer(System.getProperty("com.ibm.cics.jvmserver.name"));
 
-        // Return to the user
-        return info;
-    }
+		// Format the current time to ISO 8601 standards
+		Calendar nowUTC = Calendar.getInstance(TimeZone.getTimeZone("Z"));
+		info.setTime(String.format(ISO8601_FORMAT, nowUTC));
+
+		// Add the environment information
+		info.setEnv(env);
+
+		// Return to the user
+		return info;
+	}
 }

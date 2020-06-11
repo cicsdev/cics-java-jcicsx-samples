@@ -19,25 +19,25 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "cicsEnvironment")
 public class CICSEnvironment {
 
-    @XmlElement(name = "cicsProduct")
-    private String prod;
-    
-    @XmlElement(name = "cicsVersion")
-    private String cicsVer;
-    
-    public String getProd() {
-        return prod;
-    }
+	@XmlElement(name = "cicsProduct")
+	private String prod;
 
-    public String getCicsVer() {
-        return cicsVer;
-    }
+	@XmlElement(name = "cicsVersion")
+	private String cicsVer;
 
-    public void setProd(String prod) {
-        this.prod = prod;
-    }
+	public String getProd() {
+		return prod;
+	}
 
-    public void setCicsVer(String cicsVer) {
-        this.cicsVer = cicsVer;
-    }
+	public String getCicsVer() {
+		return cicsVer;
+	}
+
+	public void setProd(String prod) {
+		this.prod = prod;
+	}
+
+	public void setCicsVer(String cicsVer) {
+		this.cicsVer = cicsVer;
+	}
 }

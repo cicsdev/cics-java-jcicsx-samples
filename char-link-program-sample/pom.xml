@@ -23,9 +23,9 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- JCICSX dependency, used in SampleServlet.java -->
+    <!-- JCICSX dependency, used in CharLinkServlet.java -->
     <dependency>
-     <!--
+    <!--
       <groupId>com.ibm.cics</groupId> 
       <artifactId>com.ibm.cics.jcicsx</artifactId> 
      -->

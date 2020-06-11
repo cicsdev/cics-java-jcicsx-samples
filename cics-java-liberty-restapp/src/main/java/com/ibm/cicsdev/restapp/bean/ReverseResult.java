@@ -18,48 +18,48 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlType(name = "linkResult")
 public class ReverseResult {
-    
-    @XmlElement(name = "time")
-    protected String time;
 
-    @XmlElement(name = "original")
-    protected String originalText;
+	@XmlElement(name = "time")
+	protected String time;
 
-    @XmlElement(name = "reverse")
-    protected String reverseText;
+	@XmlElement(name = "original")
+	protected String originalText;
 
-    @XmlElement(name = "truncated")
-    protected boolean truncated;
+	@XmlElement(name = "reverse")
+	protected String reverseText;
 
-    public boolean isTruncated() {
-        return truncated;
-    }
+	@XmlElement(name = "truncated")
+	protected boolean truncated;
 
-    public void setTruncated(boolean truncated) {
-        this.truncated = truncated;
-    }
+	public boolean isTruncated() {
+		return truncated;
+	}
 
-    public String getTime() {
-        return time;
-    }
+	public void setTruncated(boolean truncated) {
+		this.truncated = truncated;
+	}
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+	public String getTime() {
+		return time;
+	}
 
-    public String getOriginalText() {
-        return originalText;
-    }
+	public void setTime(String time) {
+		this.time = time;
+	}
 
-    public void setOriginalText(String originalText) {
-        this.originalText = originalText;
-    }
+	public String getOriginalText() {
+		return originalText;
+	}
 
-    public String getReverseText() {
-        return reverseText;
-    }
+	public void setOriginalText(String originalText) {
+		this.originalText = originalText;
+	}
 
-    public void setReverseText(String reverseText) {
-        this.reverseText = reverseText;
-    }
+	public String getReverseText() {
+		return reverseText;
+	}
+
+	public void setReverseText(String reverseText) {
+		this.reverseText = reverseText;
+	}
 }
