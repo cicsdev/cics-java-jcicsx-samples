@@ -1,6 +1,6 @@
 # bit-link-program-sample
 
-Sample RESTful web application for deployment to a Liberty JVM server in CICS. `SampleServlet` takes an Integer temperature and uses the JCICSX API to link to the `CONVERT` COBOL program to convert it from Celcius to Fahrenheit. The link uses BIT containers for both the input and the output. 
+Sample RESTful web application for deployment to a Liberty JVM server in CICS. `BitLinkServlet` takes an Integer temperature and uses the JCICSX API to link to the `CONVERT` COBOL program to convert it from Celcius to Fahrenheit. The link uses BIT containers for both the input and the output. 
 
 
 ## Supporting files
@@ -39,7 +39,7 @@ You can then view the web server `http://yourcicsurl.com:9080/bit-link-program-s
 
 * http://yourcicsurl.com:9080/bit-link-program-sample-0.0.1-SNAPSHOT/75
 where 75 can be any integer and represents a temperate in Celcius. 
-This will invoke the `SampleServlet` class and return the following response with the temperature converted to Fahrenheit:
+This will invoke the `BitLinkServlet` class and return the following response with the temperature converted to Fahrenheit:
 
 `Returned from link to 'CONVERT'. 75 degrees celcius = 167 degrees fahrenheit`
 

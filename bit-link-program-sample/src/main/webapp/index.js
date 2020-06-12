@@ -1,7 +1,7 @@
 // index.js
 
 // request message on server
-//Calls SampleServlet to get the message
+//Calls BitLinkServlet to get the message
 xhrGet("BitLinkServlet", function(responseText){
 	// add to document
 	var mytitle = document.getElementById('message');
