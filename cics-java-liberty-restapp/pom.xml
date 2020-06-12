@@ -26,18 +26,13 @@
       <groupId>javax.ws.rs</groupId>
       <artifactId>javax.ws.rs-api</artifactId>
       <version>2.0.1</version>
-      <scope>provided</scope>
     </dependency>
 
-    <!-- JCICSX dependency, used in ReverseResource.java -->
+    <!-- JCICSX dependency -->
     <dependency>
-    <!--
-      <groupId>com.ibm.cics</groupId> 
-      <artifactId>com.ibm.cics.jcicsx</artifactId> 
-     -->
-      <groupId>com.ibm.cics.antz.Integrated</groupId>
+      <groupId>com.ibm.cics</groupId>
       <artifactId>com.ibm.cics.jcicsx</artifactId>
-      <version>730-SNAPSHOT</version>
+      <version>1.000.0-5.6</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>

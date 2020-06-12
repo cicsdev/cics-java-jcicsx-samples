@@ -2,7 +2,7 @@
 
 // request message on server
 //Calls SampleServlet to get the message
-xhrGet("SampleServlet", function(responseText){
+xhrGet("BitLinkServlet", function(responseText){
 	// add to document
 	var mytitle = document.getElementById('message');
 	mytitle.innerHTML = responseText;
