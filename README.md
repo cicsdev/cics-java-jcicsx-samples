@@ -8,8 +8,8 @@ Each sample is contained within a web application which can be packaged as a WAR
 ## Prerequisites
 
 * CICS TS V5.6 or later
-* Java SE 1.7 or later on the z/OS system
-* Java SE 1.7 or later on the workstation
+* Java SE 1.8 or later on the z/OS system
+* Java SE 1.8 or later on the workstation
 
 
 
