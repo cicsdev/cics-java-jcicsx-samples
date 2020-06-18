@@ -7,8 +7,8 @@ This web application takes the string "Hello from Java" and links to the EDUCHAN
 ## Pre-reqs
 
 * CICS TS V5.6 or later
-* Java SE 1.7 or later on the z/OS system
-* Java SE 1.7 or later on the workstation
+* Java SE 1.8 or later on the z/OS system
+* Java SE 1.8 or later on the workstation
 
 ## Setup
 
