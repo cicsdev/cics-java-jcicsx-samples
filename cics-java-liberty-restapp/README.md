@@ -30,8 +30,8 @@ Download and compile the supplied COBOL program EDUCHAN and deploy into CICS.
 ## Pre-reqs
 
 * CICS TS V5.6 or later
-* Java SE 1.7 or later on the z/OS system
-* Java SE 1.7 or later on the workstation
+* Java SE 1.8 or later on the z/OS system
+* Java SE 1.8 or later on the workstation
 
 
 ## Setup
