@@ -1,6 +1,6 @@
 # cics-java-liberty-restapp sample
 
-This sample is the same as the existing JCICS [cics-java-liberty-restapp sample](https://github.com/cicsdev/cics-java-liberty-restapp/blob/master/src/Java/com/ibm/cicsdev/restapp/InfoResource.java), but updated to use JCICSX instead of JCICS to show the similarities and differences. 
+This sample is the same as the existing JCICS [cics-java-liberty-restapp sample](https://github.com/cicsdev/cics-java-liberty-restapp/blob/main/src/Java/com/ibm/cicsdev/restapp/InfoResource.java), but updated to use JCICSX instead of JCICS to show the similarities and differences. 
 
 
 Sample RESTful web application for deployment to a Liberty JVM server in CICS. The application is supplied with two resources:

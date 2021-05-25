@@ -30,7 +30,7 @@ This sample takes a string and links to a COBOL program with a channel and input
 
 ## [cics-java-liberty-restapp](cics-java-liberty-restapp)
 
-This sample mimics the existing JCICS [cics-java-liberty-restapp sample](https://github.com/cicsdev/cics-java-liberty-restapp/blob/master/src/Java/com/ibm/cicsdev/restapp/InfoResource.java), but is updated to use JCICSX instead of JCICS to show the similarities and differences. It creates a RESTful application that takes a string as an input and reverses it, and get the date and time from CICS. 
+This sample mimics the existing JCICS [cics-java-liberty-restapp sample](https://github.com/cicsdev/cics-java-liberty-restapp/blob/main/src/Java/com/ibm/cicsdev/restapp/InfoResource.java), but is updated to use JCICSX instead of JCICS to show the similarities and differences. It creates a RESTful application that takes a string as an input and reverses it, and get the date and time from CICS. 
 
 ## [mockito-testing-containers-sample](mockito-testing-containers-sample)
 
