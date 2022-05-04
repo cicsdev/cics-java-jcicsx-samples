@@ -43,6 +43,11 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.3.2</version>
+      </plugin>
 
       <!-- The below bundles the application as a WAR in a CICS bundle and deploys this to CICS using the CICS bundle deployment API.
            This is optional and can be removed if you don't wish to deploy the application this way -->
