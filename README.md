@@ -11,7 +11,6 @@ Full documentation on Java development using the JCICSX API can be found in the 
 ## Prerequisites
 
 * CICS TS V5.6 or later
-* Java SE 1.8 or later on the z/OS system
 * Java SE 1.8 or later on the workstation
 
 
