@@ -38,4 +38,4 @@ This sample shows how to get data from BIT containers, and how to test the core 
 
 ## Licence
 
-This project is licensed under the Eclipse Public License, Version 2.0.
+This project is licensed under the Eclipse Public License, Version 2.0
